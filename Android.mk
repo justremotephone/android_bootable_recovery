@@ -14,6 +14,8 @@
 
 LOCAL_PATH := $(call my-dir)
 
+ifneq ($(TARGET_NO_RECOVERY), true)
+
 
 include $(CLEAR_VARS)
 
@@ -135,3 +137,11 @@ include $(LOCAL_PATH)/minui/Android.mk \
     $(LOCAL_PATH)/uncrypt/Android.mk \
     $(LOCAL_PATH)/updater/Android.mk \
     $(LOCAL_PATH)/applypatch/Android.mk
+
+
+else #TARGET_SKIP_RECOVERY_BUILD
+
+#nothing except minui needed by heald
+include $(LOCAL_PATH)/minui/Android.mk
+
+endif #TARGET_SKIP_RECOVERY_BUILD
